@@ -4,9 +4,12 @@
     <title>Tabootstrap</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
+    <link rel="stylesheet" href="/static/css/stylesheet.css" />
     <!--<script type="text/javascript" src="/static/js/play.js"></script>-->
     <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
+    <script type="text/javascript" src="//use.typekit.net/xev6eur.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 
 
     <script>
@@ -217,12 +220,19 @@
 
     <div data-role="page" id="home">
 
-        <div data-role="header">
-            <h1>Tabootstrap</h1>
-        </div><!-- /header -->
+       
         <div data-role="content">
-            <a href="#words" id="timing" data-role="button">Play now</a>
-            <a href="#instructions" data-role="button">Instructions</a>
+            <div id="logo">
+              <img src="/static/images/full-logo.png">
+            </div>
+            <div id="team-fields" class="chalk">
+                <input type="text" name="team-one-name" id="team-one-name" value="Facebook"  />
+                <input type="text" name="team-two-name" id="team-two-name" value="Google"  />
+            </div>
+            <div id="start-buttons">
+              <a href="#words" id="timing" data-role="button" data-theme="g">Play now</a>
+              <a href="#instructions"><img class="icon" src="/static/images/icon-howtoplay.png" /></a>
+            </div>
         </div><!-- /content -->
 
     </div><!-- /page -->
