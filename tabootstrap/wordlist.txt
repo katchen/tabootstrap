@@ -20,7 +20,7 @@ taskrabbit:errands,bunny,small jobs,fee
 uber:taxi,limousine,private,black,towncar
 zipcar:rental,hourly,vehicle,automobile,uber
 stack overflow:code review,programmers,questions,yahoo answers
-zaarly:tasks,homemade
+zaarly:tasks,homemade,marketplace,jobs,laundry
 gilt:sales,daily,fashion,brands,new york
 aviary:photo editing,api,new york,lightweight,photoshop
 tumblr:reblog,fashion,new york,david karp,wordpress
@@ -31,3 +31,5 @@ meetup:groups,location,interests,workshops,drinking
 10gen:mongo db,database,andressen horowitz,leaf
 linkedin:professional social network,facebook,jobs,connections,reid hoffman
 Zynga:mark pincus,ville,social games,virtual goods,with friends
+coursera:education, long-distance learning,videos,stanford,computer science
+slideshare: presentation,slides,keynote,lecture,share
