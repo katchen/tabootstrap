@@ -232,7 +232,7 @@
                     team1 = 0;
                     team1_correct = 0;
                     team1_pass = 0;
-                    round =0;
+                    round =1;
                     $("#team1score").html(0);
                     $("#team2score").html(0);
                     $("#card").hide();
@@ -423,6 +423,8 @@
             <a href="#home" id="back-button" data-role="button" data-theme="d">Back</a>
             
         </div><!-- /content -->
+        
+        <a href="#finished">Done</a>
 
     </div>
 
@@ -508,6 +510,31 @@
                 $.post("/forms/requestProcessor.php", form1Var.serialize(), function(data){...}); 
             </script-->
     </div>
+    
+    <div data-role="page" id="finished">
+
+      <div class="scoreboard chalk" data-role="header" id="wordheader">
+        <table id="score-table">
+          <tr class="table-teams">
+            <td class="left-td"><span id="team1name">Team One</span></td>
+            <td><span id="team2name">Team Two</span></td>
+          </tr>
+          <tr class="table-scores">
+            <td class="left-td"><span id="team1score">0</span></td>
+            <td><span id="team2score">0</span></td>
+          </tr>   
+        </table>
+      </div><!-- /header -->
+      
+      <div class="gameover" data-role="content">
+        <div class="banner">
+        <div class="winning">TEAM XYZ WINS</div>
+        </div>
+      </div>
+    </div>
+    
+    
+    
 
     </body>
 {% endblock %}
