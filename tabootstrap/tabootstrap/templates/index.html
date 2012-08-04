@@ -392,6 +392,8 @@
             <p>Taboostrap is a version of Taboo for startups played in 2 teams.</p>
             <p>One person from each team describes the startup without using the taboo words</p>
         </div><!-- /content -->
+        
+        <a href="#finished">Done</a>
 
     </div>
 
@@ -476,6 +478,31 @@
                 $.post("/forms/requestProcessor.php", form1Var.serialize(), function(data){...}); 
             </script-->
     </div>
+    
+    <div data-role="page" id="finished">
+
+      <div class="scoreboard chalk" data-role="header" id="wordheader">
+        <table id="score-table">
+          <tr class="table-teams">
+            <td class="left-td"><span id="team1name">Team One</span></td>
+            <td><span id="team2name">Team Two</span></td>
+          </tr>
+          <tr class="table-scores">
+            <td class="left-td"><span id="team1score">0</span></td>
+            <td><span id="team2score">0</span></td>
+          </tr>   
+        </table>
+      </div><!-- /header -->
+      
+      <div class="gameover" data-role="content">
+        <div class="banner">
+        <div class="winning">TEAM XYZ WINS</div>
+        </div>
+      </div>
+    </div>
+    
+    
+    
 
     </body>
 {% endblock %}
