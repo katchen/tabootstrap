@@ -30,7 +30,7 @@
         var curr_team_correct = team1_correct;
         var curr_team_pass=team1_correct;
         var curr_team_name = "team1"
-        var curr_team_id = "#team1score"
+        var curr_team_id = ".team1score"
         var round=1;
         var max_round=1;
         var round_time=60;
@@ -152,10 +152,9 @@
                         $("#skip").hide();
                         */
                         roundCheck();
-                        $("#round").html(round);
-                        $("#max-round").html(max_round);
+
                         
-                        window.location.href = "/#getready";
+
                         
                     }},1000);
 
@@ -198,7 +197,7 @@
                     curr_team_correct = team2_correct;
                     curr_team_pass = team2_pass;
                     curr_team_name = team2name
-                    curr_team_id = "#team2score"
+                    curr_team_id = ".team2score"
                 } else {
                     team2 = curr_team
                     team2_correct = curr_team_correct
@@ -207,7 +206,7 @@
                     curr_team_correct = team1_correct;
                     curr_team_pass = team1_pass;
                     curr_team_name = team1name;
-                    curr_team_id = "#team1score";
+                    curr_team_id = ".team1score";
                     round += 1
                 }
                 $("#cur-team").html(curr_team_name);
@@ -215,29 +214,41 @@
 
             function roundCheck() {
                 if (round > max_round) {
-                    result = "Team 1: "+team1;
-                    result += "\nTeam 2: "+team2;
+
                     if (team1>team2) {
-                        result += "\nTeam 1 Wins!"
+                        $("#winner").html(team1name)
                     } else if (team1==team2){
-                        result += "\nDraw!"
+                        $("#win_title").html("Draw!")
                     } else {
-                        result += "\nTeam 2 Wins!"
+                        $("#winner").html(team2name)
                     }
-                    alert(result)
 
-                    team2 = 0;
-                    team2_correct = 0;
-                    team2_pass = 0;
-                    team1 = 0;
-                    team1_correct = 0;
-                    team1_pass = 0;
-                    round =1;
-                    $("#team1score").html(0);
-                    $("#team2score").html(0);
-                    $("#card").hide();
 
+                    window.location.href = "/#finished";
+
+
+                } else{
+                    $("#round").html(round);
+                    $("#max-round").html(max_round);
+                    window.location.href = "/#getready";
                 }
+
+
+            }
+
+            function resetGameStats() {
+                team2 = 0;
+                team2_correct = 0;
+                team2_pass = 0;
+                team1 = 0;
+                team1_correct = 0;
+                team1_pass = 0;
+                round =1;
+                $(".team1score").html(0);
+                $(".team2score").html(0);
+                //$("#card").hide();
+                $("#round").html(round);
+                $("#max-round").html(max_round);
             }
 
             $("#go").click ( function(){
@@ -286,8 +297,8 @@
                     team2name = $("#team-two-name").attr("placeholder")
                 }
 
-                $("#team1name").html(team1name);
-                $("#team2name").html(team2name);
+                $(".team1name").html(team1name);
+                $(".team2name").html(team2name);
                 curr_team_name = team1name;
                 $("#cur-team").html(curr_team_name);
             })
@@ -308,6 +319,10 @@
                   $("#max-round").html(max_round);
                 
                 window.location.href = "/#home";
+            })
+
+            $("#home").click(function(){
+                resetGameStats();
             })
 
         })
@@ -349,12 +364,12 @@
       <div class="scoreboard chalk" data-role="header" id="wordheader">
         <table id="score-table">
           <tr class="table-teams">
-            <td class="left-td"><span id="team1name">Team One</span></td>
-            <td><span id="team2name">Team Two</span></td>
+            <td class="left-td"><span class="team1name">Team One</span></td>
+            <td><span class="team2name">Team Two</span></td>
           </tr>
           <tr class="table-scores">
-            <td class="left-td"><span id="team1score">0</span></td>
-            <td><span id="team2score">0</span></td>
+            <td class="left-td"><span class="team1score">0</span></td>
+            <td><span class="team2score">0</span></td>
           </tr>
             
         </table>
@@ -513,22 +528,23 @@
     
     <div data-role="page" id="finished">
 
-      <div class="scoreboard chalk" data-role="header" id="wordheader">
+      <div class="scoreboard chalk" data-role="header" id="gameover">
         <table id="score-table">
           <tr class="table-teams">
-            <td class="left-td"><span id="team1name">Team One</span></td>
-            <td><span id="team2name">Team Two</span></td>
+            <td class="left-td"><span class="team1name">Team One</span></td>
+            <td><span class="team2name">Team Two</span></td>
           </tr>
           <tr class="table-scores">
-            <td class="left-td"><span id="team1score">0</span></td>
-            <td><span id="team2score">0</span></td>
+            <td class="left-td"><span class="team1score">0</span></td>
+            <td><span class="team2score">0</span></td>
           </tr>   
         </table>
       </div><!-- /header -->
       
       <div class="gameover" data-role="content">
         <div class="banner">
-        <div class="winning">TEAM XYZ WINS</div>
+        <div class="winning">TEAM <span id="winner">XYZ</span> WINS</div>
+          <a class="winning" href="#home"> Go Home </a>
         </div>
       </div>
     </div>
