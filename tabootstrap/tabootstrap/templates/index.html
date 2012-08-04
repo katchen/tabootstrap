@@ -26,6 +26,8 @@
         var curr_team_pass=team1_correct;
         var curr_team_name = "team1"
         var curr_team_id = "#team1score"
+        var round=1;
+        var max_round=1;
 
         $(document).ready(function(){
             var counter = 60;
@@ -135,6 +137,7 @@
                         $("#go").show();
                         $("#correct").hide();
                         $("#skip").hide();
+                        roundCheck();
                     }},1000);
 
             }
@@ -177,19 +180,49 @@
                     curr_team = team1;
                     curr_team_correct = team1_correct;
                     curr_team_pass = team1_pass;
-                    curr_team_name = "team1"
-                    curr_team_id = "#team1score"
+                    curr_team_name = "team1";
+                    curr_team_id = "#team1score";
+                    round += 1
                 }
             }
 
+            function roundCheck() {
+                if (round > max_round) {
+                    result = "Team 1: "+team1;
+                    result += "\nTeam 2: "+team2;
+                    if (team1>team2) {
+                        result += "\nTeam 1 Wins!"
+                    } else if (team1==team2){
+                        result += "\nDraw!"
+                    } else {
+                        result += "\nTeam 2 Wins!"
+                    }
+                    alert(result)
+
+                    team2 = 0;
+                    team2_correct = 0;
+                    team2_pass = 0;
+                    team1 = 0;
+                    team1_correct = 0;
+                    team1_pass = 0;
+                    round =0;
+                    $("#team1score").html(0);
+                    $("#team2score").html(0);
+                    $("#banned").hide();
+                    $("#startup").hide();
+
+                }
+            }
 
             $("#go").click ( function(){
                 // PUT DIV CHANGING HERE
-                $("#go").hide()
-                $("#correct").show()
-                $("#skip").show()
-                startCounter(5)
-                getNewSet()
+                $("#banned").show();
+                $("#startup").show();
+                $("#go").hide();
+                $("#correct").show();
+                $("#skip").show();
+                startCounter(5);
+                getNewSet();
             })
 
             $("#correct").click ( function(){
