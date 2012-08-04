@@ -141,10 +141,16 @@
                         $("#counter").html("Done");
                         calcFinish(curr_team,curr_team_correct,curr_team_pass);
                         changePlayer();
-                        $("#go").show();
+                        /*$("#go").show();
                         $("#correct").hide();
                         $("#skip").hide();
+                        */
                         roundCheck();
+                        $("#round").html(round);
+                        $("#max-round").html(max_round);
+                        
+                        window.location.href = "/#getready";
+                        
                     }},1000);
 
             }
@@ -229,14 +235,18 @@
 
             $("#go").click ( function(){
                 // PUT DIV CHANGING HERE
-                $("#wordheader").fadeOut();
+                /*$("#wordheader").fadeOut();
                 $("#get-ready-bear-div").fadeOut();
     
                 $("card").show();
 
                 $("#correct").show();
                 $("#skip").show();
-
+                
+                
+*/
+                $(".bar").width(0);
+                
                 startCounter(round_time);
                 getNewSet();
             })
@@ -262,12 +272,17 @@
                     round_time =$(this).text();
                     $(this).attr("selected","selected")
                     $("#counter").html(round_time)
+                  
                 })
 
                 $("#choose_rounds option:selected").each(function(){
                     max_round =$(this).text();
                     $(this).attr("selected","selected")
                 })
+                 $("#round").html(round);
+                  $("#max-round").html(max_round);
+                
+                window.location.href = "/#home";
             })
 
         })
@@ -291,7 +306,7 @@
                 <input type="text" name="team-two-name" id="team-two-name" value="Google"  />
             </div>
             <div id="start-buttons">
-              <a href="#words" id="timing" data-role="button" data-theme="g">Play now</a>
+              <a href="#getready" id="timing" data-role="button" data-theme="g">Play now</a>
               
             </div>
             <a href="#createword" id="createword" data-role="button" data-theme="b">Add Word</a>
@@ -304,39 +319,42 @@
 
     </div><!-- /page -->
 
-    <div data-role="page" id="words" >
+    <div data-role="page" id="getready" >
+      <div class="scoreboard chalk" data-role="header" id="wordheader">
+        <table id="score-table">
+          <tr class="table-teams">
+            <td class="left-td"><span id="team1name">Team One</span></td>
+            <td><span id="team2name">Team Two</span></td>
+          </tr>
+          <tr class="table-scores">
+            <td class="left-td"><span id="team1score">0</span></td>
+            <td><span id="team2score">0</span></td>
+          </tr>
+            
+        </table>
+      </div><!-- /header -->
+      
+      <div id="get-ready-bear-div" class="logo">
+        <div id="round-info">
+            Round <span id="round">1</span> of <span id="max-round">10</span>
+        </div>
+        <div id="team-info">
+          TEAM <span id="cur-team">FACEBOOK</span>
+        </div>
+        <img id="get-ready-bear" src="/static/images/getready.png">
+        <div class="start-buttons">
+          <a id="go" href="#words" data-role="button" data-theme="g"> GO </a>
+        </div>
+      </div>
+    </div>
 
-        <div class="scoreboard chalk" data-role="header" id="wordheader">
-          <table id="score-table">
-            <tr class="table-teams">
-              <td class="left-td"><span id="team1name">Team One</span></td>
-              <td><span id="team2name">Team Two</span></td>
-            </tr>
-            <tr class="table-scores">
-              <td class="left-td"><span id="team1score">0</span></td>
-              <td><span id="team1score">0</span></td>
-            </tr>
-              
-          </table>
-        </div><!-- /header -->
+    <div data-role="page" id="words" >
 
         <div data-role="content" class="card-background">
             <div class="progress progress-striped active">
               <div class="bar" style="width: 0%;"></div>
             </div>   
-            <div id="get-ready-bear-div" class="logo">
-              <div id="round-info">
-                  Round 1 of 10
-              </div>
-              <div id="team-info">
-                TEAM FACEBOOK
-              </div>
-              <img id="get-ready-bear" src="/static/images/getready.png">
-              <div class="start-buttons">
-                <a id="go" data-role="button" data-theme="g"> GO </a>
-              </div>
-            </div>         
-            
+                 
             <div id="card-plus-timer" >
               <div id="counter">60</div>
               <!--<button onclick="getContent('dfdjf')">Click</button>-->
@@ -352,8 +370,8 @@
               </div>
               <br/>
               <br/>
-              <a id="correct" style="display: none;" data-role="button">Correct!</a>
-              <a id="skip" style="display: none;" data-role="button">Skip</a>
+              <a id="correct" data-role="button">Correct!</a>
+              <a id="skip" data-role="button">Skip</a>
             </div>
         </div><!-- /content -->
 
