@@ -7,8 +7,6 @@
 	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
 	<script>
-      // Defines the time (in seconds) at which to change tthe font to its alert mode.
-      var flash_time = 15;
       function seconds_to_time(sec)
       {
           var minutes = (Math.floor(sec / 60)).toString();
@@ -38,68 +36,25 @@
           document.getElementById('banned').innerHTML = wordlist;
           $('#banned').listview('refresh');
       } 
+      
+      function tick () {
+      	if (document.getElementById('counter').data > 0) {
+      		document.getElementById('counter').data = document.getElementById ('counter').firstChild.data - 1;
+      		setTimeout ('tick()', 1000);
+      	} else {
+      		document.getElementById('counter').data = 'done';
+      	}
+      }
+      
+      if (document.getElementById('counter')) onload = function () {
+        console.log("HII");
+        document.getElementById('counter').data = 60;
+      	tick();
+      }
+      
 
-      $(document).ready(function() {
-          var time;
 
-          var flash, countdown;
-
-          // Hide the reset button by default.
-          $("#reset-time").css("display", "none");
-
-          // Loads information into the timer when a tea is selected.
-          $("a[href=#word]").bind("click", function() {
-
-              time = 120;
-
-              $("#time").html(seconds_to_time(steep_time));
-              $("#temp").html("@ " + steep_temp);
-          });
-
-          // Start button click handler.
-          $("#start-time").bind("click", function() {
-              // Switch start button/reset button visibility.
-              $("#start-time").css("display", "none");
-              $("#reset-time").css("display", "block");
-
-              // Reset button click handler.
-              $("#reset-time").bind("click", function() {
-                  // Reset the clock's time and color
-                  clearInterval(flash);
-                  clearInterval(countdown);
-                  $("#time").stop();
-                  $("#time").show();
-                  time = steep_time;
-                  $("#time").html(seconds_to_time(time));
-                  $("#time").removeClass("alert");
-
-                  // Switch to start button.
-                  $("#reset-time").css("display", "none");
-                  $("#start-time").css("display", "block");
-              }); // end reset button click handler
-
-              // Controls the "countdown" aspect of the form.
-              // It will decrement time every second.
-              countdown = setInterval(function() {
-                  $("#time").html(seconds_to_time(--time));
-
-                  // Change color when at flash_time seconds.
-                  if(time <= flash_time) {
-                      $("#time").addClass("alert");
-                  }
-
-                  // Flash time when it has run out.
-                  if(time == 0) {
-                      clearInterval(countdown);
-
-                      flash = setInterval(function() {
-                          $("#time").fadeToggle();
-                      }, 250);
-                  }
-              }, 1000);
-          }); // end start button click handler
-      });
-  </script>
+</script>
 </head> 
 <body> 
 
@@ -110,7 +65,7 @@
 	</div><!-- /header -->
 
 	<div data-role="content">	
-    <a href="#words" data-role="button">Play now</a>
+    <a href="#words" id="timing" data-role="button">Play now</a>
     <a href="#instructions" data-role="button">Instructions</a>
 	</div><!-- /content -->
 
@@ -118,12 +73,12 @@
 
 <div data-role="page" id="words">
   
-	<div data-role="header">
+	<div data-role="header" id="wordheader">
 		<h1>Tabootstrap</h1>
 	</div><!-- /header -->
 
 	<div data-role="content">
-	  <div id="time"></div>	
+	  <div id="counter"></div>	
 	  <button onclick="getContent('dfdjf')">Click</button>
 	  <h3 id="startup"></h3>
 	  <ul data-role="listview" id="banned">
