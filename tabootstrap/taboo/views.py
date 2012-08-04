@@ -25,3 +25,11 @@ def play(request):
         return HttpResponse(banned_list)
 
     return render_to_response('play.html')
+    
+def create_word(request):
+    if request.method == 'POST':
+        form = TabooWordForm(request.POST)
+        
+    else:
+        form = TabooWordForm()
+        return render_to_response('createword.html',ecks,context_instance=RequestContext(request))
