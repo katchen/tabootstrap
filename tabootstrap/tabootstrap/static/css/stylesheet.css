@@ -1,11 +1,11 @@
 .ui-content {
     margin:0;
     padding:0;
-    background:white;
+    background-image: url('/static/images/paper.jpeg');
 }
 
-.ui-page {
-    background:white;
+.ui-page, .ui-body {
+    background-image: url('/static/images/paper.jpeg');
 }
 
 .logo {
