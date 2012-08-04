@@ -9,9 +9,7 @@
 }
 
 .logo {
-    margin-left:auto;
-    margin-right:auto;
-    width:320px;
+    text-align:center;
     margin-bottom:20px;
     margin-top:20px;
 }
@@ -75,10 +73,28 @@
     width:150px;
 }
 
+#round-info {
+    text-align:center;
+    font-weight:bold;
+    font-size:14px;
+    font-family: 'museo-sans';
+}
+
+#team-info {
+    text-align:center;
+    font-weight:bold;
+    font-size:30px;
+    margin-top:5px;
+    font-family: 'museo-sans';
+    
+}
+
 /* code for card pages */
 .card-background {
     background-image: url('/static/images/paper.jpeg');
 }
+
+
 
 /* code for green button */
 .ui-btn-up-g, .ui-btn-hover-g, .ui-btn-down-g
