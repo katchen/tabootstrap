@@ -24,7 +24,7 @@
 }
 
 .scoreboard td {
-    width:170px;
+    width:160px;
     padding-left:5px;
 }
 
@@ -127,6 +127,24 @@
 }
 
 
+#card-ui-content {
+    background-image: url('/static/images/paper.jpeg');    
+}
+
+#card-plus-timer {
+    background:white;
+    box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
+    -moz-box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
+    -webkit-box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
+    margin:20px;
+    text-align:center;
+}
+
+ul {
+    list-style-type:none;
+    padding:0;
+    margin:0;
+}
 
 /* code for green button */
 .ui-btn-up-g, .ui-btn-hover-g, .ui-btn-down-g

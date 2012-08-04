@@ -34,8 +34,12 @@
         var round=1;
         var max_round=1;
         var round_time=60;
+        var team1name;
+        var team2name;
 
         $(document).ready(function(){
+            $("#round").html(round);
+            $("#max-round").html(max_round);
 //            var counter = 60;
 //            function seconds_to_time(sec)
 //            {
@@ -186,14 +190,14 @@
             }
 
             function changePlayer() {
-                if (curr_team_name=="team1") {
+                if (curr_team_name==team1name) {
                     team1 = curr_team
                     team1_correct = curr_team_correct
                     team1_pass = curr_team_pass
                     curr_team = team2;
                     curr_team_correct = team2_correct;
                     curr_team_pass = team2_pass;
-                    curr_team_name = "team2"
+                    curr_team_name = team2name
                     curr_team_id = "#team2score"
                 } else {
                     team2 = curr_team
@@ -202,10 +206,11 @@
                     curr_team = team1;
                     curr_team_correct = team1_correct;
                     curr_team_pass = team1_pass;
-                    curr_team_name = "team1";
+                    curr_team_name = team1name;
                     curr_team_id = "#team1score";
                     round += 1
                 }
+                $("#cur-team").html(curr_team_name);
             }
 
             function roundCheck() {
@@ -227,7 +232,7 @@
                     team1 = 0;
                     team1_correct = 0;
                     team1_pass = 0;
-                    round =0;
+                    round =1;
                     $("#team1score").html(0);
                     $("#team2score").html(0);
                     $("#card").hide();
@@ -245,8 +250,9 @@
                 $("#correct").show();
                 $("#skip").show();
                 
-                
+
 */
+
                 $(".bar").width(0);
                 
                 startCounter(round_time);
@@ -267,6 +273,23 @@
                 $(curr_team_id).html(curr_team)
                 // PUT DIV CHANGING HERE
                 getNewSet()
+            })
+
+            $("#timing").click(function(){
+                team1name = $("#team-one-name").val()
+                if (team1name=="") {
+                    team1name = $("#team-one-name").attr("placeholder")
+                }
+
+                team2name = $("#team-two-name").val()
+                if (team2name=="") {
+                    team2name = $("#team-two-name").attr("placeholder")
+                }
+
+                $("#team1name").html(team1name);
+                $("#team2name").html(team2name);
+                curr_team_name = team1name;
+                $("#cur-team").html(curr_team_name);
             })
 
             $("#save").click( function(){
@@ -304,8 +327,8 @@
               <img src="/static/images/full-logo.png">
             </div>
             <div id="team-fields" class="chalk">
-                <input type="text" name="team-one-name" id="team-one-name" value="Facebook"  />
-                <input type="text" name="team-two-name" id="team-two-name" value="Google"  />
+                <input type="text" name="team-one-name" id="team-one-name" placeholder="Facebook"  />
+                <input type="text" name="team-two-name" id="team-two-name" placeholder="Google"  />
             </div>
             <div id="start-buttons">
               <a href="#getready" id="timing" data-role="button" data-theme="g">Play now</a>
@@ -350,9 +373,9 @@
       </div>
     </div>
 
-    <div data-role="page" id="words" >
+    <div data-role="page" id="words" class="card-background">
 
-        <div data-role="content" class="card-background">
+        <div data-role="content" id="card-ui-content">
             <div class="progress progress-striped active">
               <div id="counter" style="float:left; color:white;">60</div>
               <div class="bar" style="width: 0%;"></div>
@@ -362,7 +385,7 @@
               <!--<button onclick="getContent('dfdjf')">Click</button>-->
               <div id="card" >
               <h3 id="startup"></h3>
-              <ul data-role="listview" id="banned">
+              <ul id="banned">
                   <!-- <li>Mark Zuckerberg</li>
                  <li>Social Network</li>
                  <li>Friends</li>
