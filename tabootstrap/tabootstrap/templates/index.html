@@ -5,8 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
     <link rel="stylesheet" href="/static/css/stylesheet.css" />
+<<<<<<< HEAD
     <link href='http://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>
     
+=======
+    <link rel="stylesheet" href="/static/css/bootstrap.css" />
+>>>>>>> 49986a0f56634017211648beb14cd9c79aa5f168
     <!--<script type="text/javascript" src="/static/js/play.js"></script>-->
     <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
@@ -30,27 +34,27 @@
         var curr_team_id = "#team1score"
         var round=1;
         var max_round=1;
+        var round_time=60;
 
         $(document).ready(function(){
-            var counter = 60;
-            function seconds_to_time(sec)
-            {
-                var minutes = (Math.floor(sec / 60)).toString();
-                var seconds = (sec % 60).toString();
-
-                if(seconds.length == 1)
-                {
-                    seconds = "0" + seconds;
-                }
-
-                return minutes + ":" + seconds;
-            }
+//            var counter = 60;
+//            function seconds_to_time(sec)
+//            {
+//                var minutes = (Math.floor(sec / 60)).toString();
+//                var seconds = (sec % 60).toString();
+//
+//                if(seconds.length == 1)
+//                {
+//                    seconds = "0" + seconds;
+//                }
+//
+//                return minutes + ":" + seconds;
+//            }
 
             function getContent(startup,banned)
             {
 
                 document.getElementById('startup').innerHTML = startup;
-                //var banned = Array(1,2,3);
                 var wordlist = "";
                 for(i=0;i<banned.length;i++)
                 {
@@ -63,26 +67,26 @@
                 $('#banned').listview('refresh');
             }
 
-            function ticking() {
-                if (counter>0)
-                {
-                    counter-=1;
-                    setTimeout ('tick()', 1000);
-                    $('#counter').html(counter);
-                }
-                else
-                {
-                    counter = 60
-                    $('#counter').html("done");
-
-                }
-                // if (document.getElementById('counter').data > 0) {
-                // 	document.getElementById('counter').data = document.getElementById ('counter').firstChild.data - 1;
-                // 	setTimeout ('tick()', 1000);
-                // } else {
-                // 	document.getElementById('counter').data = 'done';
-                // }
-            }
+//            function ticking() {
+//                if (counter>0)
+//                {
+//                    counter-=1;
+//                    setTimeout ('tick()', 1000);
+//                    $('#counter').html(counter);
+//                }
+//                else
+//                {
+//                    counter = 60
+//                    $('#counter').html("done");
+//
+//                }
+//                // if (document.getElementById('counter').data > 0) {
+//                // 	document.getElementById('counter').data = document.getElementById ('counter').firstChild.data - 1;
+//                // 	setTimeout ('tick()', 1000);
+//                // } else {
+//                // 	document.getElementById('counter').data = 'done';
+//                // }
+//            }
 
 
 
@@ -131,8 +135,12 @@
                 counter = seconds;
                 $("#counter").html(counter)
                 var interval = setInterval(function(){counter -= 1;
-                    $("#counter").html(counter);if (counter == 0) {
+                    $("#counter").html(counter);
+                    var $bar = $('.bar');
+                    $bar.width($bar.width()+($(window).width())/seconds);
+                    if (counter == 0) {
                         clearInterval(interval);
+                        $('.progress').removeClass('active');
                         $("#counter").html("Done");
                         calcFinish(curr_team,curr_team_correct,curr_team_pass);
                         changePlayer();
@@ -150,6 +158,13 @@
                 $("#counter").html(counter)
                 if (counter == 0) {
                     clearInterval(interval)
+                }
+                var $bar = $('.bar');
+                if ($bar.width()==400) {
+                    clearInterval(progress);
+                    $('.progress').removeClass('active');
+                } else {
+                    $bar.width($bar.width()+40);
                 }
             }
 
@@ -223,7 +238,7 @@
                 $("#go").hide();
                 $("#correct").show();
                 $("#skip").show();
-                startCounter(5);
+                startCounter(round_time);
                 getNewSet();
             })
 
@@ -243,7 +258,18 @@
                 getNewSet()
             })
 
+            $("#save").click( function(){
+                $("#choose_seconds option:selected").each(function(){
+                    round_time =$(this).text();
+                    $(this).attr("selected","selected")
+                    $("#counter").html(round_time)
+                })
 
+                $("#choose_rounds option:selected").each(function(){
+                    max_round =$(this).text();
+                    $(this).attr("selected","selected")
+                })
+            })
 
         })
     </script>
@@ -258,6 +284,7 @@
        
         <div data-role="content">
             <div class="logo">
+
               <img src="/static/images/full-logo.png">
             </div>
             <div id="team-fields" class="chalk">
@@ -272,6 +299,7 @@
               <a href="#instructions"><img class="icon" src="/static/images/icon-howtoplay.png" /></a>
               <a href="#settings"><img class="icon" src="/static/images/icon-settings.png" /></a>
             </div>
+
         </div><!-- /content -->
 
     </div><!-- /page -->
@@ -293,9 +321,15 @@
         </div><!-- /header -->
 
         <div data-role="content">
+<<<<<<< HEAD
             <div id="get-ready-bear-div" class="logo">
               <img id="get-ready-bear" src="/static/images/getready.png">
             </div>            
+=======
+            <div class="progress progress-striped active">
+                <div class="bar" style="width: 0%;"></div>
+            </div>
+>>>>>>> 49986a0f56634017211648beb14cd9c79aa5f168
             <div id="counter">60</div>
             <div class="start-buttons">
               <a id="go" data-role="button" data-theme="g"> GO </a>
@@ -350,5 +384,38 @@
         </div><!-- /content -->
 
     </div>
+
+    <div data-role="page" id="settings">
+
+        <div data-role="header">
+            <h1>Tabootstrap</h1>
+        </div><!-- /header -->
+        <a href="#home" data-role="button">Back</a>
+        <div data-role="content">
+            <label> Seconds </label>
+            <select id="choose_seconds">
+                <option>4</option>
+                <option>50</option>
+                <option>55</option>
+                <option selected="selected">60</option>
+                <option>65</option>
+                <option>70</option>
+                <option>75</option>
+                <option>80</option>
+            </select>
+
+            <label> Rounds </label>
+            <select id="choose_rounds">
+                <option>1</option>
+                <option>2</option>
+                <option selected="selected">3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+            <input type="submit" value="save" id="save">
+        </div><!-- /content -->
+
+    </div>
+
     </body>
 {% endblock %}
