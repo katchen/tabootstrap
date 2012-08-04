@@ -1,4 +1,4 @@
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
 from django.http import HttpResponse
 from taboo.models import *
@@ -6,7 +6,8 @@ import random
 import json
 
 def index(request):
-    return render_to_response('index.html')
+    tabform = TabooWordForm()
+    return render_to_response('index.html', {'form':tabform}, context_instance=RequestContext(request))
 
 def instructions(request):
     return render_to_response('instructions.html')
@@ -52,7 +53,7 @@ def create_word(request):
             else:
                 ban_inst = BannedWord.objects.create(word=ban)
             taboo_model.banned_words.add(ban_inst)
-        return render_to_response('message.html',{'message':'hooray!'})
+        return redirect('/')
         #tabform = TabooWordForm(request.POST)
         #banform = BannedWordFormSet(request.POST)
     else:
