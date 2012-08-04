@@ -6,6 +6,8 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^$','taboo.views.index'),
+    url(r'^play/$','taboo.views.play'),
+    url(r'^instructions/$','taboo.views.instructions'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
