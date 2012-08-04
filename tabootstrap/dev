@@ -1,0 +1,14 @@
+#!/bin/bash
+
+function runserver {
+    echo "yes" | python manage.py collectstatic
+    python manage.py validate
+    python manage.py syncdb
+    python manage.py evolve --hint
+    python manage.py evolve --hint --execute
+    python manage.py runserver
+}
+
+runserver cc
+
+
