@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
     <link rel="stylesheet" href="/static/css/stylesheet.css" />
+    <link href='http://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>
+    
     <!--<script type="text/javascript" src="/static/js/play.js"></script>-->
     <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
@@ -255,7 +257,7 @@
 
        
         <div data-role="content">
-            <div id="logo">
+            <div class="logo">
               <img src="/static/images/full-logo.png">
             </div>
             <div id="team-fields" class="chalk">
@@ -263,40 +265,78 @@
                 <input type="text" name="team-two-name" id="team-two-name" value="Google"  />
             </div>
             <div id="start-buttons">
-              <a href="#words" id="timing" data-role="button" data-theme="g">Play now</a>
+              <a href="#getready" id="timing" data-role="button" data-theme="g">Play now</a>
+              
+            </div>
+            <div id="start-icons">
               <a href="#instructions"><img class="icon" src="/static/images/icon-howtoplay.png" /></a>
+              <a href="#settings"><img class="icon" src="/static/images/icon-settings.png" /></a>
             </div>
         </div><!-- /content -->
 
     </div><!-- /page -->
 
-    <div data-role="page" id="words">
+    <div data-role="page" id="getready" >
 
-        <div data-role="header" id="wordheader">
-            <h1>Tabootstrap</h1>
+        <div class="scoreboard chalk" data-role="header" id="wordheader">
+          <table id="score-table">
+            <tr class="table-teams">
+              <td class="left-td"><span id="team1name">Team One</span></td>
+              <td><span id="team2name">Team Two</span></td>
+            </tr>
+            <tr class="table-scores">
+              <td class="left-td"><span id="team1score">0</span></td>
+              <td><span id="team1score">0</span></td>
+            </tr>
+              
+          </table>
         </div><!-- /header -->
 
         <div data-role="content">
+            <div id="get-ready-bear-div" class="logo">
+              <img id="get-ready-bear" src="/static/images/getready.png">
+            </div>            
             <div id="counter">60</div>
-            <div id="team1">Team 1: <span id="team1score">0</span></div>
-            <div id="team2">Team 2: <span id="team2score">0</span></div>
-            <!--<button onclick="getContent('dfdjf')">Click</button>-->
-            <h3 id="startup"></h3>
-            <ul data-role="listview" id="banned">
-                <!-- <li>Mark Zuckerberg</li>
-               <li>Social Network</li>
-               <li>Friends</li>
-               <li>Connect</li>
-               <li>Myspace</li> -->
-            </ul>
-            <br/>
-            <br/>
-            <a id="go"> GO </a>
-            <a id="correct" style="display: none;" data-role="button">Correct!</a>
-            <a id="skip" style="display: none;" data-role="button">Skip</a>
+            <div class="start-buttons">
+              <a id="go" data-role="button" data-theme="g"> GO </a>
+            </div>
         </div><!-- /content -->
 
     </div>
+    
+     <div data-role="page" id="words" >
+
+          <div class="scoreboard chalk" data-role="header" id="wordheader">
+            <table id="score-table">
+              <tr class="table-teams">
+                <td class="left-td"><span id="team1name">Team One</span></td>
+                <td><span id="team2name">Team Two</span></td>
+              </tr>
+              <tr class="table-scores">
+                <td class="left-td"><span id="team1score">0</span></td>
+                <td><span id="team1score">0</span></td>
+              </tr>
+
+            </table>
+          </div><!-- /header -->
+
+          <div data-role="content">         
+              <!--<button onclick="getContent('dfdjf')">Click</button>-->
+              <h3 id="startup"></h3>
+              <ul data-role="listview" id="banned">
+                  <!-- <li>Mark Zuckerberg</li>
+                 <li>Social Network</li>
+                 <li>Friends</li>
+                 <li>Connect</li>
+                 <li>Myspace</li> -->
+              </ul>
+              <br/>
+              <br/>
+              <a id="correct" style="display: none;" data-role="button">Correct!</a>
+              <a id="skip" style="display: none;" data-role="button">Skip</a>
+          </div><!-- /content -->
+
+      </div>
 
     <div data-role="page" id="instructions">
 
