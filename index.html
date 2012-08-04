@@ -7,7 +7,7 @@
 	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
 	<script>
-      // Defines the time (in seconds) at which to change the font to its alert mode.
+      // Defines the time (in seconds) at which to change tthe font to its alert mode.
       var flash_time = 15;
       function seconds_to_time(sec)
       {
@@ -21,11 +21,27 @@
 
           return minutes + ":" + seconds;
       }
+      
+      function getContent(startup,banned)
+      {
+        
+          document.getElementById('startup').innerHTML = startup;
+          var banned = Array(1,2,3);
+          var wordlist = "";
+          for(i=0;i<banned.length;i++)
+          {
+            var element = "<li>";
+            element += banned[i];
+            element += "</li>";
+            wordlist+=element;
+          }
+          document.getElementById('banned').innerHTML = wordlist;
+          $('#banned').listview('refresh');
+      } 
 
       $(document).ready(function() {
           var time;
 
-          // Store the intervals that will be set for easy access.
           var flash, countdown;
 
           // Hide the reset button by default.
@@ -90,7 +106,7 @@
 <div data-role="page" id="home">
 
 	<div data-role="header">
-		<h1>Taboostrap</h1>
+		<h1>Tabootstrap</h1>
 	</div><!-- /header -->
 
 	<div data-role="content">	
@@ -103,10 +119,24 @@
 <div data-role="page" id="words">
   
 	<div data-role="header">
-		<h1>Taboostrap</h1>
+		<h1>Tabootstrap</h1>
 	</div><!-- /header -->
 
-	<div data-role="content">	
+	<div data-role="content">
+	  <div id="time"></div>	
+	  <button onclick="getContent('dfdjf')">Click</button>
+	  <h3 id="startup"></h3>
+	  <ul data-role="listview" id="banned">
+      <!-- <li>Mark Zuckerberg</li>
+      <li>Social Network</li>
+      <li>Friends</li>
+      <li>Connect</li>
+      <li>Myspace</li> -->
+	  </ul>
+	  <br/>
+	  <br/>
+	  <a href="index.html" data-role="button">Right!</a>
+    <a href="index.html" data-role="button">Skip</a>
 	</div><!-- /content -->
 
 </div>
@@ -114,12 +144,12 @@
 <div data-role="page" id="instructions">
   
 	<div data-role="header">
-		<h1>Taboostrap</h1>
+		<h1>Tabootstrap</h1>
 	</div><!-- /header -->
 
 	<div data-role="content">	
 	  <p>Taboostrap is a version of Taboo for startups played in 2 teams.</p>
-	  <p>One person from each team describes the startup without using the &#x21E5;2oo words</p>
+	  <p>One person from each team describes the startup without using the taboo words</p>
 	</div><!-- /content -->
 
 </div>
