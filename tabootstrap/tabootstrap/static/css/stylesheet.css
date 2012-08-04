@@ -37,33 +37,30 @@
     color:white;    
 }
 
-.gameover {
-	background-image: url('/static/images/gameover.png');
-	background-repeat:no-repeat;
-	background-position:80px 10px;
-	margin-top:20px;
-	height: 340px;
-}
 
 .banner {
+    font-family: 'museo-sans';
 	width: 100%;
-	height: 40px;
-	background-color: #3B5998;
-	filter: alpha(opacity=80);
+	height: 50px;
+    background: #ffd65e; /* Old browsers */
+    background: -moz-linear-gradient(top,  #ffd65e 0%, #febf04 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffd65e), color-stop(100%,#febf04)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #ffd65e 0%,#febf04 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #ffd65e 0%,#febf04 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #ffd65e 0%,#febf04 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #ffd65e 0%,#febf04 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffd65e', endColorstr='#febf04',GradientType=0 ); /* IE6-9 */
+/*	filter: alpha(opacity=80);
    	filter: progid:DXImageTransform.Microsoft.Alpha(opacity=80);
-   	opacity:0.8;
+   	opacity:0.8;*/
    	-moz-opacity: 0.80; 
 	margin:0;
 	padding:0;
-}
-
-.winning {
-	font-size:20px;
-	font-family:Helvetica;
-	color:#fff;
+	font-size:24px;
+    font-family: 'museo-sans';
+    font-weight:bold;
 	text-align:center;
-	padding-top:7px;
-	font-weight:bold;
+	padding-top:15px;
 }
 
 .table-scores {
@@ -101,6 +98,12 @@
     display:block;
     width:320px;
 }
+
+.padded-button {
+    padding-left:40px;
+    padding-right:40px;
+}
+
 .icon {
     width:30px;
     float:right;

@@ -1,96 +1,67 @@
 {% extends 'base.html' %}
 
 {% block head %}
-    <title>Tabootstrap</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
-    <link rel="stylesheet" href="/static/css/stylesheet.css" />
-    <<<<<<< HEAD
-    <link href='http://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>
+  	<title>Tabootstrap</title> 
+  	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+  	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
+  	<script type="text/javascript" src="/static/js/play.js"></script>
+  	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+  	<script src="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
+  	<script>
+  	$(document).ready(function(){
+    	var counter = 60;
+    	function seconds_to_time(sec)
+        {
+            var minutes = (Math.floor(sec / 60)).toString();
+            var seconds = (sec % 60).toString();
 
-    =======
-    <link rel="stylesheet" href="/static/css/bootstrap.css" />
-    >>>>>>> 49986a0f56634017211648beb14cd9c79aa5f168
-    <!--<script type="text/javascript" src="/static/js/play.js"></script>-->
-    <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-    <script src="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
-    <script type="text/javascript" src="//use.typekit.net/xev6eur.js"></script>
-    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+            if(seconds.length == 1)
+            {
+                seconds = "0" + seconds;
+            }
 
-
-    <script>
-    var return_dict = {}
-    var counter;
-    var team1 = 0;
-    var team1_correct=0;
-    var team1_pass =0;
-    var team2 = 0;
-    var team2_correct = 0;
-    var team2_pass=0;
-    var curr_team = team1;
-    var curr_team_correct = team1_correct;
-    var curr_team_pass=team1_correct;
-    var curr_team_name = "team1"
-    var curr_team_id = "#team1score"
-    var round=1;
-    var max_round=1;
-    var round_time=60;
-
-    $(document).ready(function(){
-//            var counter = 60;
-//            function seconds_to_time(sec)
-//            {
-//                var minutes = (Math.floor(sec / 60)).toString();
-//                var seconds = (sec % 60).toString();
-//
-//                if(seconds.length == 1)
-//                {
-//                    seconds = "0" + seconds;
-//                }
-//
-//                return minutes + ":" + seconds;
-//            }
+            return minutes + ":" + seconds;
+        }
 
         function getContent(startup,banned)
         {
 
             document.getElementById('startup').innerHTML = startup;
+            var banned = Array(1,2,3);
             var wordlist = "";
             for(i=0;i<banned.length;i++)
             {
-                var element = "<li>";
-                element += banned[i];
-                element += "</li>";
-                wordlist+=element;
+              var element = "<li>";
+              element += banned[i];
+              element += "</li>";
+              wordlist+=element;
             }
             document.getElementById('banned').innerHTML = wordlist;
             $('#banned').listview('refresh');
+        } 
+
+        function ticking() {
+    		if (counter>0)
+    		{
+    			counter-=1;
+        		setTimeout ('tick()', 1000);
+    			$('#counter').html(counter);
+    		}
+    		else
+    		{
+    			counter = 60
+    			$('#counter').html("done");
+
+    		}
+        	// if (document.getElementById('counter').data > 0) {
+        	// 	document.getElementById('counter').data = document.getElementById ('counter').firstChild.data - 1;
+        	// 	setTimeout ('tick()', 1000);
+        	// } else {
+        	// 	document.getElementById('counter').data = 'done';
+        	// }
         }
 
-//            function ticking() {
-//                if (counter>0)
-//                {
-//                    counter-=1;
-//                    setTimeout ('tick()', 1000);
-//                    $('#counter').html(counter);
-//                }
-//                else
-//                {
-//                    counter = 60
-//                    $('#counter').html("done");
-//
-//                }
-//                // if (document.getElementById('counter').data > 0) {
-//                //    document.getElementById('counter').data = document.getElementById ('counter').firstChild.data - 1;
-//                //    setTimeout ('tick()', 1000);
-//                // } else {
-//                //    document.getElementById('counter').data = 'done';
-//                // }
-//            }
-
-
-
-        var prev_words = [];
+        prev_words = [];
         $("#getNewSet").click(function(){
             getNewSet();
         })
@@ -99,366 +70,55 @@
             prev_words_string = String(prev_words)
             var data = {};
             data['prev_words'] = prev_words_string;
+            var return_dict = {};
             $.ajax({
-                       type: "GET",
-                       url: "/play",
-                       data: data,
-                       success: function(data){
-                           data_dict = eval("("+data+")")
-                           used_all = data_dict['used_all']
-                           new_word = data_dict['taboo_word']
-                           new_banned_words = data_dict['banned_words']
-                           if (used_all) {
-                               prev_words.length = 0
-                           }
-                           prev_words.push(new_word)
-                           //setDict(new_word,new_banned_words);
-
-                           // START DOING STUFF WITH DATA HERE
-                           // new_word is a string of the new taboo word
-                           // new_banned_word is an array of strings, which are the words not allowed to be used
-
-                           getContent(new_word,new_banned_words);
+               type: "GET",
+               url: "./",
+               data: data,
+               success: function(data){
+                   data_dict = eval("("+data+")")
+                   used_all = data_dict['used_all']
+                   new_word = data_dict['taboo_word']
+                   new_banned_words = data_dict['banned_words']
+                   if (used_all) {
+                       prev_words.length = 0
+                   }
+                   prev_words.push(new_word)
 
 
-                       }
-                   })
-        }
 
-        function setDict(new_word,new_banned_words) {
-            return_dict['taboo_word'] = new_word;
-            return_dict['new_banned_words'] = new_banned_words;
+                   // START DOING STUFF WITH DATA HERE
+                   // new_word is a string of the new taboo word
+                   // new_banned_word is an array of strings, which are the words not allowed to be used
 
-        }
 
-        function startCounter(seconds) {
-            counter = seconds;
-            $("#counter").html(counter)
-            var interval = setInterval(function(){counter -= 1;
-                $("#counter").html(counter);
-                var $bar = $('.bar');
-                $bar.width($bar.width()+($(window).width())/seconds);
-                if (counter == 0) {
-                    clearInterval(interval);
-                    $('.progress').removeClass('active');
-                    $("#counter").html("Done");
-                    calcFinish(curr_team,curr_team_correct,curr_team_pass);
-                    changePlayer();
-                    $("#go").show();
-                    $("#correct").hide();
-                    $("#skip").hide();
-                    roundCheck();
-                }},1000);
-
-        }
-
-        function tick() {
-
-            counter -= 1;
-            $("#counter").html(counter)
-            if (counter == 0) {
-                clearInterval(interval)
-            }
-            var $bar = $('.bar');
-            if ($bar.width()==400) {
-                clearInterval(progress);
-                $('.progress').removeClass('active');
-            } else {
-                $bar.width($bar.width()+40);
-            }
-        }
-
-        $("#count").click( function() {
-            startCounter(3);
-        })
-
-        function calcFinish(total,correct,pass) {
-            var result;
-            result = "Passed: "+correct
-            result += "\nMissed: "+pass
-            result+= "\nTotal: "+ total
-            alert(result)
-        }
-
-        function changePlayer() {
-            if (curr_team_name=="team1") {
-                team1 = curr_team
-                team1_correct = curr_team_correct
-                team1_pass = curr_team_pass
-                curr_team = team2;
-                curr_team_correct = team2_correct;
-                curr_team_pass = team2_pass;
-                curr_team_name = "team2"
-                curr_team_id = "#team2score"
-            } else {
-                team2 = curr_team
-                team2_correct = curr_team_correct
-                team2_pass = curr_team_pass
-                curr_team = team1;
-                curr_team_correct = team1_correct;
-                curr_team_pass = team1_pass;
-                curr_team_name = "team1";
-                curr_team_id = "#team1score";
-                round += 1
-            }
-        }
-
-        function roundCheck() {
-            if (round > max_round) {
-                result = "Team 1: "+team1;
-                result += "\nTeam 2: "+team2;
-                if (team1>team2) {
-                    result += "\nTeam 1 Wins!"
-                } else if (team1==team2){
-                    result += "\nDraw!"
-                } else {
-                    result += "\nTeam 2 Wins!"
-                }
-                alert(result)
-
-                team2 = 0;
-                team2_correct = 0;
-                team2_pass = 0;
-                team1 = 0;
-                team1_correct = 0;
-                team1_pass = 0;
-                round =0;
-                $("#team1score").html(0);
-                $("#team2score").html(0);
-                $("#banned").hide();
-                $("#startup").hide();
-
-            }
-        }
-
-        $("#go").click ( function(){
-            // PUT DIV CHANGING HERE
-            $("#banned").show();
-            $("#startup").show();
-            $("#go").hide();
-            $("#correct").show();
-            $("#skip").show();
-            startCounter(round_time);
-            getNewSet();
-        })
-
-        $("#correct").click ( function(){
-            // PUT DIV CHANGING HERE
-            curr_team += 1
-            curr_team_correct += 1
-            $(curr_team_id).html(curr_team)
-            getNewSet()
-        })
-
-        $("#skip").click ( function(){
-            curr_team -= 1
-            curr_team_pass += 1
-            $(curr_team_id).html(curr_team)
-            // PUT DIV CHANGING HERE
-            getNewSet()
-        })
-
-        $("#save").click( function(){
-            $("#choose_seconds option:selected").each(function(){
-                round_time =$(this).text();
-                $(this).attr("selected","selected")
-                $("#counter").html(round_time)
+               }
             })
+        }
 
-            $("#choose_rounds option:selected").each(function(){
-                max_round =$(this).text();
-                $(this).attr("selected","selected")
-            })
-        })
 
     })
-    </script>
-    <script type="text/javascript">
-        $(document).bind("mobileinit", function(){
-            ajaxEnabled:false;
-        });
-    </script>
+  	</script>
+  
 {% endblock %}
 
-
 {% block content %}
-    <body>
+<body> 
 
-    <div data-role="page" id="home">
+<div data-role="page" id="home">
 
+	<div data-role="header">
+		<h1>Tabootstrap</h1>
+	</div><!-- /header -->
+    <div id="count"> start count</div>
+    <div id="counter">count me</div>
+	<div data-role="content">	
+    <a href="words.html" id="timing" onclick="ticking()" data-role="button">Play now</a>
+    <a href="instructions.html" data-role="button">Instructions</a>
+	</div><!-- /content -->
 
-        <div data-role="content">
-
-            <div class="logo">
-
-                <img src="/static/images/full-logo.png">
-            </div>
-            <div id="team-fields" class="chalk">
-                <input type="text" name="team-one-name" id="team-one-name" value="Facebook"  />
-                <input type="text" name="team-two-name" id="team-two-name" value="Google"  />
-            </div>
-            <div id="start-buttons">
-                <a href="#getready" id="timing" data-role="button" data-theme="g">Play now</a>
-
-            </div>
-            <a href="#createword" data-role="button">Add Word</a>
-            <div id="start-icons">
-                <a href="#instructions"><img class="icon" src="/static/images/icon-howtoplay.png" /></a>
-                <a href="#settings"><img class="icon" src="/static/images/icon-settings.png" /></a>
-            </div>
+</div><!-- /page -->
 
 
-
-
-            <div data-role="page" id="getready" >
-                <div class="scoreboard chalk" data-role="header" id="wordheader">
-                    <table id="score-table">
-                        <tr class="table-teams">
-                            <td class="left-td"><span id="team1name">Team One</span></td>
-                            <td><span id="team2name">Team Two</span></td>
-                        </tr>
-                        <tr class="table-scores">
-                            <td class="left-td"><span id="team1score">0</span></td>
-                            <td><span id="team1score">0</span></td>
-                        </tr>
-
-                    </table>
-                </div><!-- /header -->
-
-                <div data-role="content">
-                    <div id="get-ready-bear-div" class="logo">
-                        <img id="get-ready-bear" src="/static/images/getready.png">
-                    </div>
-                    <div id="counter">60</div>
-                    <div class="start-buttons">
-                        <a id="go" data-role="button" data-theme="g"> GO </a>
-                    </div>
-                </div><!-- /content -->
-            </div>
-
-            <div data-role="page" id="words" >
-
-                <div class="" data-role="header" id="wordheader">
-
-                </div><!-- /header -->
-                <div class="progress progress-striped active">
-                    <div class="bar" style="width: 0%;"></div>
-                </div>
-                <div data-role="content">
-                    <!--<button onclick="getContent('dfdjf')">Click</button>-->
-                    <h3 id="startup"></h3>
-                    <ul data-role="listview" id="banned">
-                        <!-- <li>Mark Zuckerberg</li>
-                       <li>Social Network</li>
-                       <li>Friends</li>
-                       <li>Connect</li>
-                       <li>Myspace</li> -->
-                    </ul>
-                    <br/>
-                    <br/>
-                    <a id="correct" style="display: none;" data-role="button">Correct!</a>
-                    <a id="skip" style="display: none;" data-role="button">Skip</a>
-                </div><!-- /content -->
-
-            </div>
-
-            <div data-role="page" id="instructions">
-
-                <div data-role="header">
-                    <h1>Tabootstrap</h1>
-                </div><!-- /header -->
-
-                <div data-role="content">
-                    <p>Taboostrap is a version of Taboo for startups played in 2 teams.</p>
-                    <p>One person from each team describes the startup without using the taboo words</p>
-                </div><!-- /content -->
-
-            </div>
-
-            <div data-role="page" id="settings">
-
-                <div data-role="header">
-                    <h1>Tabootstrap</h1>
-                </div><!-- /header -->
-                <a href="#home" data-role="button">Back</a>
-                <div data-role="content">
-                    <label> Seconds </label>
-                    <select id="choose_seconds">
-                        <option>4</option>
-                        <option>50</option>
-                        <option>55</option>
-                        <option selected="selected">60</option>
-                        <option>65</option>
-                        <option>70</option>
-                        <option>75</option>
-                        <option>80</option>
-                    </select>
-
-                    <label> Rounds </label>
-                    <select id="choose_rounds">
-                        <option>1</option>
-                        <option>2</option>
-                        <option selected="selected">3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>
-                    <input type="submit" value="save" id="save">
-                </div><!-- /content -->
-
-            </div>
-
-
-            <div data-role="page" id="createword">
-                <form action="{% url create_word %}" data-ajax="false" method="POST">
-                    {% csrf_token %}
-                    <div data-role="fieldcontain">
-                        <label for="word">Taboo Word</label>
-                        <input name="word" id="id_word" />
-                    </div>
-
-                    <div data-role="fieldcontain">
-                        <label for="word">Banned Word</label>
-                        <input name="banned_word" id="id_banned_word" />
-                    </div>
-
-                    <div data-role="fieldcontain">
-                        <label for="word">Banned Word</label>
-                        <input name="banned_word" id="id_banned_word" />
-                    </div>
-
-                    <div data-role="fieldcontain">
-                        <label for="word">Banned Word</label>
-                        <input name="banned_word" id="id_banned_word" />
-                    </div>
-
-                    <div data-role="fieldcontain">
-                        <label for="word">Banned Word</label>
-                        <input name="banned_word" id="id_banned_word" />
-                    </div>
-
-                    <div data-role="fieldcontain">
-                        <label for="word">Banned Word</label>
-                        <input name="banned_word" id="id_banned_word" />
-                    </div>
-                    <input type="submit" name="" value="Submit Form" data-theme="b" />
-                    <input type="hidden" name="next" value="{{ next }}" />
-                </form>
-                <!--div id="shipDiv" data-role="fieldcontain">
-              <form action="./" method="post">
-
-                  <div data-role="fieldcontain">
-                    <input type="submit" name="" value="Submit Form" data-theme="b" />
-                  <button class="btn btn-primary" type="submit">
-                    Submit
-                  </button>
-                </form>
-                <a data-role="button" href="{% url create_word %}">Create_Word</a>
-            <script text='jquery'>
-                $.post("/forms/requestProcessor.php", form1Var.serialize(), function(data){...});
-            </script-->
-            </div><!-- /content -->
-
-        </div>
-    </div>
-    </body>
+</body>
 {% endblock %}
