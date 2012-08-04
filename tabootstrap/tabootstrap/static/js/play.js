@@ -20,7 +20,7 @@ $(document).ready(function(){
     {
 
         document.getElementById('startup').innerHTML = startup;
-        var banned = Array(1,2,3);
+        //var banned = Array(1,2,3);
         var wordlist = "";
         for(i=0;i<banned.length;i++)
         {
@@ -60,7 +60,6 @@ $(document).ready(function(){
 //    	tick();
 //    }
 
-    $(document).ready(function(){
         var prev_words = [];
         $("#getNewSet").click(function(){
             getNewSet();
@@ -123,6 +122,10 @@ $(document).ready(function(){
         $("#count").click( function() {
             startCounter(3);
         })
-    })
 
+    $("#timing").click(function(){
+        startCounter(60);
+
+
+    })
 })

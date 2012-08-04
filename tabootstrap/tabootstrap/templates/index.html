@@ -1,7 +1,255 @@
 {% extends 'base.html' %}
 
+{% block head %}
+    <title>Tabootstrap</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
+    <script type="text/javascript" src="/static/js/play.js"></script>
+    <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
+
+
+    <script>
+        var return_dict = {}
+        var counter;
+        var team1 = 0;
+        var team1_correct=0;
+        var team1_pass =0;
+        var team2 = 0;
+        var team2_correct = 0;
+        var team2_pass=0;
+        var curr_team = team1;
+        var curr_team_correct = team1_correct;
+        var curr_team_pass=team1_correct;
+        var curr_team_name = "team1"
+        var curr_team_id = "#team1score"
+
+        $(document).ready(function(){
+            var counter = 60;
+            function seconds_to_time(sec)
+            {
+                var minutes = (Math.floor(sec / 60)).toString();
+                var seconds = (sec % 60).toString();
+
+                if(seconds.length == 1)
+                {
+                    seconds = "0" + seconds;
+                }
+
+                return minutes + ":" + seconds;
+            }
+
+            function getContent(startup,banned)
+            {
+
+                document.getElementById('startup').innerHTML = startup;
+                //var banned = Array(1,2,3);
+                var wordlist = "";
+                for(i=0;i<banned.length;i++)
+                {
+                    var element = "<li>";
+                    element += banned[i];
+                    element += "</li>";
+                    wordlist+=element;
+                }
+                document.getElementById('banned').innerHTML = wordlist;
+                $('#banned').listview('refresh');
+            }
+
+            function ticking() {
+                if (counter>0)
+                {
+                    counter-=1;
+                    setTimeout ('tick()', 1000);
+                    $('#counter').html(counter);
+                }
+                else
+                {
+                    counter = 60
+                    $('#counter').html("done");
+
+                }
+                // if (document.getElementById('counter').data > 0) {
+                // 	document.getElementById('counter').data = document.getElementById ('counter').firstChild.data - 1;
+                // 	setTimeout ('tick()', 1000);
+                // } else {
+                // 	document.getElementById('counter').data = 'done';
+                // }
+            }
+
+
+
+            var prev_words = [];
+            $("#getNewSet").click(function(){
+                getNewSet();
+            })
+
+            function getNewSet(){
+                prev_words_string = String(prev_words)
+                var data = {};
+                data['prev_words'] = prev_words_string;
+                $.ajax({
+                           type: "GET",
+                           url: "/play",
+                           data: data,
+                           success: function(data){
+                               data_dict = eval("("+data+")")
+                               used_all = data_dict['used_all']
+                               new_word = data_dict['taboo_word']
+                               new_banned_words = data_dict['banned_words']
+                               if (used_all) {
+                                   prev_words.length = 0
+                               }
+                               prev_words.push(new_word)
+                               //setDict(new_word,new_banned_words);
+
+                               // START DOING STUFF WITH DATA HERE
+                               // new_word is a string of the new taboo word
+                               // new_banned_word is an array of strings, which are the words not allowed to be used
+
+                               getContent(new_word,new_banned_words);
+
+
+                           }
+                       })
+            }
+
+            function setDict(new_word,new_banned_words) {
+                alert(new_word)
+                return_dict['taboo_word'] = new_word;
+                return_dict['new_banned_words'] = new_banned_words;
+
+            }
+
+            function startCounter(seconds) {
+                counter = seconds;
+                $("#counter").html(counter)
+                var interval = setInterval(function(){counter -= 1;
+                    $("#counter").html(counter);if (counter == 0) {
+                        clearInterval(interval);
+                        $("#counter").html("Done");
+                        calcFinish(curr_team,curr_team_correct,curr_team_pass);
+                        changePlayer();
+                        $("#go").show();
+                        $("#correct").hide();
+                        $("#skip").hide();
+                    }},1000);
+
+            }
+
+            function tick() {
+
+                counter -= 1;
+                $("#counter").html(counter)
+                if (counter == 0) {
+                    clearInterval(interval)
+                }
+            }
+
+            $("#count").click( function() {
+                startCounter(3);
+            })
+
+            function calcFinish(total,correct,pass) {
+                var result;
+                result = "Passed: "+correct
+                result += "\nMissed: "+pass
+                result+= "\nTotal: "+ total
+                alert(result)
+            }
+
+            function changePlayer() {
+                alert("ASD")
+                if (curr_team_name=="team1") {
+                    curr_team = team2;
+                    curr_team_correct = team2_correct;
+                    curr_team_pass = team2_pass;
+                    curr_team_name = "team2"
+                    curr_team_id = "#team2score"
+                    alert(curr_team_id)
+                } else {
+                    curr_team = team1;
+                    curr_team_correct = team1_correct;
+                    curr_team_pass = team1_pass;
+                    curr_team_name = "team1"
+                    curr_team_id = "#team1score"
+                }
+            }
+
+
+            $("#go").click ( function(){
+                // PUT DIV CHANGING HERE
+                $("#go").hide()
+                $("#correct").show()
+                $("#skip").show()
+                startCounter(5)
+                getNewSet()
+            })
+
+            $("#correct").click ( function(){
+                // PUT DIV CHANGING HERE
+                curr_team += 1
+                curr_team_correct += 1
+                $(curr_team_id).html(curr_team)
+                getNewSet()
+            })
+
+            $("#skip").click ( function(){
+                curr_team -= 1
+                curr_team_pass += 1
+                $(curr_team_id).html(curr_team)
+                // PUT DIV CHANGING HERE
+                getNewSet()
+            })
+
+
+
+        })
+    </script>
+{%  endblock %}
+
+
 {% block content %}
-<a href="./play">Play Now!</a><br>
-<a href="./instructions">Instructions</a>
-<a href="{% url create_word %}">Create Word</a>
+    <body>
+
+    <div data-role="page" id="home">
+
+        <div data-role="header">
+            <h1>Tabootstrap</h1>
+        </div><!-- /header -->
+        <div data-role="content">
+            <a href="#words" id="timing" data-role="button">Play now</a>
+            <a href="../instructions.html" data-role="button">Instructions</a>
+        </div><!-- /content -->
+
+    </div><!-- /page -->
+
+    <div data-role="page" id="words">
+
+        <div data-role="header" id="wordheader">
+            <h1>Tabootstrap</h1>
+        </div><!-- /header -->
+
+        <div data-role="content">
+            <div id="counter">60</div>
+            <div id="team1">Team 1: <span id="team1score">0</span></div>
+            <div id="team2">Team 2: <span id="team2score">0</span></div>
+            <!--<button onclick="getContent('dfdjf')">Click</button>-->
+            <h3 id="startup"></h3>
+            <ul data-role="listview" id="banned">
+                <!-- <li>Mark Zuckerberg</li>
+               <li>Social Network</li>
+               <li>Friends</li>
+               <li>Connect</li>
+               <li>Myspace</li> -->
+            </ul>
+            <br/>
+            <br/>
+            <a id="go"> GO </a>
+            <a id="correct" style="display: none;" data-role="button">Correct!</a>
+            <a id="skip" style="display: none;" data-role="button">Skip</a>
+        </div><!-- /content -->
+
+    </div>
+    </body>
 {% endblock %}
