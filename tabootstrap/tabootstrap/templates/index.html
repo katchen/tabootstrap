@@ -145,7 +145,7 @@
                         clearInterval(interval);
                         $('.progress').removeClass('active');
                         $("#counter").html("Done");
-                        calcFinish(curr_team,curr_team_correct,curr_team_pass);
+                        calcFinish(curr_team,curr_team_correct,curr_team_pass,curr_team_name);
                         changePlayer();
                         /*$("#go").show();
                         $("#correct").hide();
@@ -180,12 +180,11 @@
                 startCounter(3);
             })
 
-            function calcFinish(total,correct,pass) {
-                var result;
-                result = "Passed: "+correct
-                result += "\nMissed: "+pass
-                result+= "\nTotal: "+ total
-                alert(result)
+            function calcFinish(total,correct,pass,curr_team_name) {
+                $("#correct-score").html(correct)
+                $("#pass-score").html(pass)
+                $("#total-score").html(total)
+                $("#finished-team").html(curr_team_name)
             }
 
             function changePlayer() {
@@ -230,7 +229,7 @@
                 } else{
                     $("#round").html(round);
                     $("#max-round").html(max_round);
-                    window.location.href = "/#getready";
+                    window.location.href = "/#finish-turn";
                 }
 
 
@@ -548,7 +547,17 @@
         </div>
       </div>
     </div>
-    
+
+
+    <div data-role="page" id="finish-turn">
+        <div id="finished-team"> </div>
+        <span>Pass: <span id="correct-score"></span></span>
+        <span>Fail: <span id="pass-score"></span></span>
+        <span>Total: <span id="total-score"></span></span>
+
+        <a href="#getready"> Continue </a>
+        </div>
+    </div>
     
     
 
