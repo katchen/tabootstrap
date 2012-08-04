@@ -222,8 +222,7 @@
                     round =0;
                     $("#team1score").html(0);
                     $("#team2score").html(0);
-                    $("#banned").hide();
-                    $("#startup").hide();
+                    $("#card").hide();
 
                 }
             }
@@ -233,9 +232,8 @@
                 $("#wordheader").fadeOut();
                 $("#get-ready-bear-div").fadeOut();
     
-                $("#banned").delay(50000).show();
-                $("#startup").delay(50000).show();
-                $("#go").hide();
+                $("card").show();
+
                 $("#correct").show();
                 $("#skip").show();
 
@@ -324,16 +322,18 @@
         <div data-role="content">
             <div id="get-ready-bear-div" class="logo">
               <img id="get-ready-bear" src="/static/images/getready.png">
+              <div class="start-buttons">
+                <a id="go" data-role="button" data-theme="g"> GO </a>
+              </div>
             </div>         
                
             <div id="counter">60</div>
             <div class="progress progress-striped active">
                 <div class="bar" style="width: 0%;"></div>
             </div>
-            <div class="start-buttons">
-              <a id="go" data-role="button" data-theme="g"> GO </a>
-            </div>
+
             <!--<button onclick="getContent('dfdjf')">Click</button>-->
+            <div id="card">
             <h3 id="startup"></h3>
             <ul data-role="listview" id="banned">
                 <!-- <li>Mark Zuckerberg</li>
@@ -342,6 +342,7 @@
                <li>Connect</li>
                <li>Myspace</li> -->
             </ul>
+            </div>
             <br/>
             <br/>
             <a id="correct" style="display: none;" data-role="button">Correct!</a>
