@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form action="./" method="post">{% csrf_token %}
+  <label class="control-label">Taboo Word</label>
+  <div class="controls">
+    <input name="word" id="id_word" />
+  </div>
+  
+  <label class="control-label">Banned Word</label>
+  <div class="controls">
+    <input name="banned_word" id="id_banned_word" />
+  </div>
+  
+  <label class="control-label">Banned Word</label>
+  <div class="controls">
+    <input name="banned_word" id="id_banned_word" />
+  </div>
+  
+  <label class="control-label">Banned Word</label>
+  <div class="controls">
+    <input name="banned_word" id="id_banned_word" />
+  </div>
+  
+  <label class="control-label">Banned Word</label>
+  <div class="controls">
+    <input name="banned_word" id="id_banned_word" />
+  </div>
+  
+  <label class="control-label">Banned Word</label>
+  <div class="controls">
+    <input name="banned_word" id="id_banned_word" />
+  </div>
+  
+  <button class="btn btn-primary" type="submit">
+    Submit
+  </button>
+</form>
+{% endblock %}
