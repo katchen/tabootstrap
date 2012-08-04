@@ -320,6 +320,7 @@
         </div><!-- /header -->
 
         <div data-role="content" class="card-background">
+            
             <div id="get-ready-bear-div" class="logo">
               <div id="round-info">
                   Round 1 of 10
@@ -333,7 +334,10 @@
               </div>
             </div>         
             
-            <div id="card-plus-timer" >   
+            <div id="card-plus-timer" >
+              <div class="progress progress-striped active">
+                <div class="bar" style="width: 0%;"></div>
+              </div>   
               <div id="counter">60</div>
               <div class="progress progress-striped active">
                   <div class="bar" style="width: 0%;"></div>
@@ -354,6 +358,20 @@
               <br/>
               <a id="correct" style="display: none;" data-role="button">Correct!</a>
               <a id="skip" style="display: none;" data-role="button">Skip</a>
+=======
+               
+            <div id="counter">60</div>
+            <!--<button onclick="getContent('dfdjf')">Click</button>-->
+            <div id="card">
+            <h3 id="startup"></h3>
+            <ul data-role="listview" id="banned">
+                <!-- <li>Mark Zuckerberg</li>
+               <li>Social Network</li>
+               <li>Friends</li>
+               <li>Connect</li>
+               <li>Myspace</li> -->
+            </ul>
+>>>>>>> f0935c2881c00703d62c405a2084c8d9389850b7
             </div>
         </div><!-- /content -->
 
