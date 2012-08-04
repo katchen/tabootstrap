@@ -1,1 +1,34 @@
-hi:yo,dude,yo,dude,yo
+facebook:mark zuckerberg,social network,ipo,like,open graph
+pinterest:pin,pictures,women,furniture,pretty food
+instagram:filters,1 billion dollars,photo sharing,hipster,kevin systrom
+path:dave morin,50 people,social network,moments,design
+airbnb:travel,sharing economy,host,bed and breakfast,ycombinator
+spotify:music,streaming,sweden,pandora,facebook
+dropbox:file sharing,cloud computing,drew houston,ycombinator,google drive
+pandora:music genome project,radio,spotify,skip,discovery
+groupon:daily deals,coupon,livingsocial,merchants,local
+twitter:tweet,bird,jack dorsey,celebrity,140 characters
+yelp:reviews,restaurants,recommendations,ratings,stars
+asana:task management,software,facebook,javascript,coordination
+turntable:social,dj,music,reputation,room
+klout:reputation,twitter,facebook,score,perks
+box:enterprise,cloud computing,dropbox,levie,file syncing
+fab:design,daily,furniture,social network,new york
+rockmelt:browser,wowser,social,chromium,Tim Howes
+foodspotting:asian girls,pictures,twitter,food porn,hungry
+taskrabbit:errands,bunny,small jobs,fee
+uber:taxi,limousine,private,black,towncar
+zipcar:rental,hourly,vehicle,automobile,uber
+stack overflow:code review,programmers,questions,yahoo answers
+zaarly:tasks,homemade
+gilt:sales,daily,fashion,brands,new york
+aviary:photo editing,api,new york,lightweight,photoshop
+tumblr:reblog,fashion,new york,david karp,wordpress
+zocdoc:appointments,clinic,patients,doctors,scheduling
+foursquare:checkin,location based,tip,new york,mayor
+etsy:new york,marketplace,hand crafted,goods,art
+meetup:groups,location,interests,workshops,drinking
+10gen:mongo db,database,andressen horowitz,leaf
+linkedin:professional social network,facebook,jobs,connections,reid hoffman
+Zynga:mark pincus,ville,social games,virtual goods,with friends
+

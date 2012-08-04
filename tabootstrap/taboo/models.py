@@ -3,7 +3,7 @@ from django.forms import ModelForm
 from django.forms.models import modelformset_factory
 
 class TabooWord(models.Model):
-    word = models.CharField(max_length=30,unique=True)
+    word = models.CharField(max_length=30, unique=True)
     banned_words = models.ManyToManyField('BannedWord')
     user_created = models.BooleanField(default=False)
 
@@ -25,4 +25,4 @@ class BannedWordForm(ModelForm):
     class Meta:
         model = BannedWord
         
-
+BannedWordFormSet = modelformset_factory(BannedWord)

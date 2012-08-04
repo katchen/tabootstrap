@@ -125,6 +125,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'taboo',
     'tabootstrap',
+    'django_evolution',
 )
 
 # A sample logging configuration. The only tangible logging
