@@ -51,22 +51,74 @@
 }
 
 #team-fields {
-    padding: 10px 40px;
+    padding-left: 40px;
+    padding-right: 40px;
+    
 }
 
-.start-buttons {
-    padding:10px 70px;
+#versus {
+    position:absolute;
+    right:10px;
+    top:290px;
+    font-family: 'museo-sans';
+    font-weight: bold;
 }
 
 .start-buttons-2 {
     margin-left: 80px;
 }
 
-
+.start-buttons, .go-button {
+    margin-left:auto;
+    margin-right:auto;
+    display:block;
+    width:320px;
+}
 .icon {
     width:30px;
     float:right;
     margin-right:10px;
+}
+
+.ui-body-c, .ui-body-c input, .ui-body-c select, .ui-body-c textarea, .ui-body-c button {
+    font-family: 'museo-sans';
+    font-weight:bold;
+}
+
+#createword .ui-body-c, .ui-body-c input, .ui-body-c select, .ui-body-c textarea, .ui-body-c button {
+    font-weight:300;
+    margin-left:10px;
+    margin-left:10px;
+    width:300px;
+}
+
+#createword label{
+    margin-left:10px;
+    padding-bottom:10px;
+}
+
+#instructions {
+    padding:20px;
+}
+
+#settings {
+    padding-top:20px;
+}
+
+#settings label {
+    padding:10px;
+}
+
+.text-logo {
+    width:200px;
+    margin-left:auto;
+    margin-right:auto;
+    display:block;
+}
+
+.ui-field-contain, fieldset.ui-field-contain {
+    border-bottom-style:none;
+    padding-top:0px;
 }
 
 /* code for get ready page */
@@ -111,12 +163,27 @@
     -webkit-box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
     margin:20px;
     text-align:center;
+    font-size:24px;
+    font-family: 'museo-sans';
+    
 }
 
 ul {
     list-style-type:none;
     padding:0;
     margin:0;
+}
+
+#card-name {
+    font-weight:bold;
+    padding-top:5px;
+}
+
+#card-banned {
+    font-weight:100;
+    line-height:200%;
+    background:#F2F0F0;
+    padding-bottom:10px;
 }
 
 /* code for green button */
@@ -161,5 +228,67 @@ ul {
 {
 	color: white;
 	font-weight: bold;
+	text-decoration: none;
+}
+
+/* Red button css */
+
+.ui-btn-up-a {
+	border: 1px solid #c1272d /*{a-bup-border}*/;
+	background: #c1272d /*{a-bup-background-color}*/;
+	font-weight: bold;
+	color: #ffffff /*{a-bup-color}*/;
+	text-shadow: 0 /*{a-bup-shadow-x}*/ 1px /*{a-bup-shadow-y}*/ 0 /*{a-bup-shadow-radius}*/ #444444 /*{a-bup-shadow-color}*/;
+	background-image: -webkit-gradient(linear, left top, left bottom, from( #d42a31 /*{a-bup-background-start}*/), to( #ad2328 /*{a-bup-background-end}*/)); /* Saf4+, Chrome */
+	background-image: -webkit-linear-gradient( #d42a31 /*{a-bup-background-start}*/, #ad2328 /*{a-bup-background-end}*/); /* Chrome 10+, Saf5.1+ */
+	background-image:    -moz-linear-gradient( #d42a31 /*{a-bup-background-start}*/, #ad2328 /*{a-bup-background-end}*/); /* FF3.6 */
+	background-image:     -ms-linear-gradient( #d42a31 /*{a-bup-background-start}*/, #ad2328 /*{a-bup-background-end}*/); /* IE10 */
+	background-image:      -o-linear-gradient( #d42a31 /*{a-bup-background-start}*/, #ad2328 /*{a-bup-background-end}*/); /* Opera 11.10+ */
+	background-image:         linear-gradient( #d42a31 /*{a-bup-background-start}*/, #ad2328 /*{a-bup-background-end}*/);
+}
+.ui-btn-up-a:visited,
+.ui-btn-up-a a.ui-link-inherit {
+	color: #ffffff /*{a-bup-color}*/;
+}
+.ui-btn-hover-a {
+	border: 1px solid #dd2c33 /*{a-bhover-border}*/;
+	background: #dd2c33 /*{a-bhover-background-color}*/;
+	font-weight: bold;
+	color: #ffffff /*{a-bhover-color}*/;
+	text-shadow: 0 /*{a-bhover-shadow-x}*/ 1px /*{a-bhover-shadow-y}*/ 0 /*{a-bhover-shadow-radius}*/ #444444 /*{a-bhover-shadow-color}*/;
+	background-image: -webkit-gradient(linear, left top, left bottom, from( #f33038 /*{a-bhover-background-start}*/), to( #c6272d /*{a-bhover-background-end}*/)); /* Saf4+, Chrome */
+	background-image: -webkit-linear-gradient( #f33038 /*{a-bhover-background-start}*/, #c6272d /*{a-bhover-background-end}*/); /* Chrome 10+, Saf5.1+ */
+	background-image:    -moz-linear-gradient( #f33038 /*{a-bhover-background-start}*/, #c6272d /*{a-bhover-background-end}*/); /* FF3.6 */
+	background-image:     -ms-linear-gradient( #f33038 /*{a-bhover-background-start}*/, #c6272d /*{a-bhover-background-end}*/); /* IE10 */
+	background-image:      -o-linear-gradient( #f33038 /*{a-bhover-background-start}*/, #c6272d /*{a-bhover-background-end}*/); /* Opera 11.10+ */
+	background-image:         linear-gradient( #f33038 /*{a-bhover-background-start}*/, #c6272d /*{a-bhover-background-end}*/);
+}
+.ui-btn-hover-a:visited,
+.ui-btn-hover-a:hover,
+.ui-btn-hover-a a.ui-link-inherit {
+	color: #ffffff /*{a-bhover-color}*/;
+}
+.ui-btn-down-a {
+	border: 1px solid #dd2c33 /*{a-bdown-border}*/;
+	background: #dd2c33 /*{a-bdown-background-color}*/;
+	font-weight: bold;
+	color: #ffffff /*{a-bdown-color}*/;
+	text-shadow: 0 /*{a-bdown-shadow-x}*/ 1px /*{a-bdown-shadow-y}*/ 0 /*{a-bdown-shadow-radius}*/ #444444 /*{a-bdown-shadow-color}*/;
+	background-image: -webkit-gradient(linear, left top, left bottom, from( #c6272d /*{a-bdown-background-start}*/), to( #f33038 /*{a-bdown-background-end}*/)); /* Saf4+, Chrome */
+	background-image: -webkit-linear-gradient( #c6272d /*{a-bdown-background-start}*/, #f33038 /*{a-bdown-background-end}*/); /* Chrome 10+, Saf5.1+ */
+	background-image:    -moz-linear-gradient( #c6272d /*{a-bdown-background-start}*/, #f33038 /*{a-bdown-background-end}*/); /* FF3.6 */
+	background-image:     -ms-linear-gradient( #c6272d /*{a-bdown-background-start}*/, #f33038 /*{a-bdown-background-end}*/); /* IE10 */
+	background-image:      -o-linear-gradient( #c6272d /*{a-bdown-background-start}*/, #f33038 /*{a-bdown-background-end}*/); /* Opera 11.10+ */
+	background-image:         linear-gradient( #c6272d /*{a-bdown-background-start}*/, #f33038 /*{a-bdown-background-end}*/);
+}
+.ui-btn-down-a:visited,
+.ui-btn-down-a:hover,
+.ui-btn-down-a a.ui-link-inherit {
+	color: #ffffff /*{a-bdown-color}*/;
+}
+.ui-btn-up-a,
+.ui-btn-hover-a,
+.ui-btn-down-a {
+	 font-family: Helvetica, Arial, sans-serif /*{global-font-family}*/;
 	text-decoration: none;
 }

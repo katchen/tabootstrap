@@ -4,7 +4,7 @@
     <title>Tabootstrap</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes" />  
-    <link rel="apple-touch-icon-precomposed" href="/static/images/mobile-icon.png"/>
+    <link rel="apple-touch-icon-precomposed" href="/static/images/mobile-icon1.png"/>
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
     <link rel="stylesheet" href="/static/css/stylesheet.css" />
     <link href='http://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>
@@ -326,15 +326,16 @@
 
               <img src="/static/images/full-logo.png">
             </div>
-            <div id="team-fields" class="chalk">
+            <span id="versus">vs</span>
+            <div id="team-fields" class="">
                 <input type="text" name="team-one-name" id="team-one-name" placeholder="Facebook"  />
                 <input type="text" name="team-two-name" id="team-two-name" placeholder="Google"  />
             </div>
-            <div id="start-buttons">
-              <a href="#getready" id="timing" data-role="button" data-theme="g">Play now</a>
+            <div class="start-buttons">
+              <a href="#createword" id="createword" data-role="button" data-inline="true" data-theme="d">Add Word</a>
+              <a href="#getready" id="timing" data-role="button" data-inline="true" data-theme="g">Play game</a>
               
             </div>
-            <a href="#createword" id="createword" data-role="button" data-theme="b">Add Word</a>
             <div id="start-icons">
               <a href="#instructions"><img class="icon" src="/static/images/icon-howtoplay.png" /></a>
               <a href="#settings"><img class="icon" src="/static/images/icon-settings.png" /></a>
@@ -367,7 +368,7 @@
           TEAM <span id="cur-team">FACEBOOK</span>
         </div>
         <img id="get-ready-bear" src="/static/images/getready.png">
-        <div class="start-buttons">
+        <div class="go-button">
           <a id="go" href="#words" data-role="button" data-theme="g"> GO </a>
         </div>
       </div>
@@ -384,21 +385,28 @@
             <div id="card-plus-timer" >
               <!--<button onclick="getContent('dfdjf')">Click</button>-->
               <div id="card" >
-              <h3 id="startup"></h3>
-              <ul id="banned">
-                  <!-- <li>Mark Zuckerberg</li>
-                 <li>Social Network</li>
-                 <li>Friends</li>
-                 <li>Connect</li>
-                 <li>Myspace</li> -->
-              </ul>
+                <div id="card-name">
+                  <h3 id="startup"></h3>
+                </div>
+                <div id="card-banned">
+                  <ul id="banned">
+                      <!-- <li>Mark Zuckerberg</li>
+                     <li>Social Network</li>
+                     <li>Friends</li>
+                     <li>Connect</li>
+                     <li>Myspace</li> -->
+                  </ul>
+                </div>
               </div>
-              <br/>
-              <br/>
-              <div data-role="controlgroup" data-type="horizontal" class="start-buttons-2">
-              <a id="correct" data-role="button" data-icon="check" data-theme="g">Fund!</a>
-              <a id="skip" data-role="button" data-icon="delete">Pivot</a>
+              
+             
               </div>
+               <div class="start-buttons">
+                 <a id="skip" data-role="button" data-icon="delete" data-theme="a"data-inline="true">Pivot</a>
+                 
+                 <a id="correct" data-role="button" data-icon="check" data-theme="g"data-inline="true">$$$</a>
+
+                </div>
             </div>
         </div><!-- /content -->
 
@@ -407,27 +415,24 @@
      
     <div data-role="page" id="instructions">
 
-        <div data-role="header">
-            <h1>Tabootstrap</h1>
-        </div><!-- /header -->
-
-        <div data-role="content">
-            <p>Taboostrap is a version of Taboo for startups played in 2 teams.</p>
+      <img src="/static/images/text-logo.png" class="text-logo"/>
+     
+        <div data-role="content" id="instructions">
+            <p>Tabootstrap is a version of Taboo for startups played in 2 teams.</p>
             <p>One person from each team describes the startup without using the taboo words</p>
+            <a href="#home" id="back-button" data-role="button" data-theme="d">Back</a>
+            
         </div><!-- /content -->
 
     </div>
 
     <div data-role="page" id="settings">
 
-        <div data-role="header">
-            <h1>Tabootstrap</h1>
-        </div><!-- /header -->
-        <a href="#home" data-role="button">Back</a>
+        <img src="/static/images/text-logo.png" class="text-logo"/>
         <div data-role="content">
             <label> Seconds </label>
             <select id="choose_seconds">
-                <option>4</option>
+                <option>10</option>
                 <option>50</option>
                 <option>55</option>
                 <option selected="selected">60</option>
@@ -445,12 +450,16 @@
                 <option>4</option>
                 <option>5</option>
             </select>
-            <input type="submit" value="save" id="save">
+            <div class="start-buttons">
+              <a href="#home" id="back-button" data-role="button" data-inline="true" data-theme="d">Cancel</a>
+              <input type="submit" value="Save Changes" id="save" data-inline="true" data-theme="b">
+            </div>
         </div><!-- /content -->
 
     </div>
     
     <div data-role="page" id="createword">
+      <br />
             <form action="{% url create_word %}" data-ajax="false" method="POST">
                 {% csrf_token %}
                 <div data-role="fieldcontain">
@@ -459,30 +468,30 @@
                   </div>
                   
                   <div data-role="fieldcontain">
-                    <label for="word">Banned Word</label>
+                    <label for="word">Banned Words</label>
                     <input name="banned_word" id="id_banned_word" />
                   </div>
                   
                   <div data-role="fieldcontain">
-                    <label for="word">Banned Word</label>
                     <input name="banned_word" id="id_banned_word" />
                   </div>
                   
                   <div data-role="fieldcontain">
-                    <label for="word">Banned Word</label>
                     <input name="banned_word" id="id_banned_word" />
                   </div>
                   
                   <div data-role="fieldcontain">
-                    <label for="word">Banned Word</label>
                     <input name="banned_word" id="id_banned_word" />
                   </div>
                   
                   <div data-role="fieldcontain">
-                    <label for="word">Banned Word</label>
                     <input name="banned_word" id="id_banned_word" />
                   </div>
-                <input type="submit" name="" value="Submit Form" data-theme="b" />
+                  <div class="start-buttons">
+                    <a href="#home" id="back-button" data-role="button" data-inline="true" data-theme="d">Cancel</a>
+                    <input type="submit" id="add-word-button" data-role="button" data-inline="true" value="Submit Form" data-theme="b" />
+                  </div>
+                
                 <input type="hidden" name="next" value="{{ next }}" />
             </form>
             <!--div id="shipDiv" data-role="fieldcontain">  
