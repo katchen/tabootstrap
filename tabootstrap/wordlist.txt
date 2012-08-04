@@ -16,7 +16,7 @@ box:enterprise,cloud computing,dropbox,levie,file syncing
 fab:design,daily,furniture,social network,new york
 rockmelt:browser,wowser,social,chromium,Tim Howes
 foodspotting:asian girls,pictures,twitter,food porn,hungry
-taskrabbit:errands,bunny,small jobs,fee
+taskrabbit:errands,bunny,small jobs,fee, employment
 uber:taxi,limousine,private,black,towncar
 zipcar:rental,hourly,vehicle,automobile,uber
 stack overflow:code review,programmers,questions,yahoo answers
@@ -28,7 +28,7 @@ zocdoc:appointments,clinic,patients,doctors,scheduling
 foursquare:checkin,location based,tip,new york,mayor
 etsy:new york,marketplace,hand crafted,goods,art
 meetup:groups,location,interests,workshops,drinking
-10gen:mongo db,database,andressen horowitz,leaf
+10gen:mongo db,database,andressen horowitz,leaf,noSQL
 linkedin:professional social network,facebook,jobs,connections,reid hoffman
 Zynga:mark pincus,ville,social games,virtual goods,with friends
 coursera:education, long-distance learning,videos,stanford,computer science

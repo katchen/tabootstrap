@@ -341,15 +341,15 @@
               <img src="/static/images/full-logo.png">
             </div>
             <span id="versus">vs</span>
-            <div id="team-fields" class="">
+            <center><div id="team-fields" class="">
                 <input type="text" name="team-one-name" id="team-one-name" placeholder="Facebook"  />
                 <input type="text" name="team-two-name" id="team-two-name" placeholder="Google"  />
-            </div>
-            <div class="start-buttons">
+            </div></center>
+            <center><div class="start-buttons">
               <a href="#createword" id="createword" data-role="button" data-inline="true" data-theme="d">Add Word</a>
               <a href="#getready" id="timing" data-role="button" data-inline="true" data-theme="g">Play game</a>
               
-            </div>
+            </div></center>
             <div id="start-icons">
               <a href="#instructions"><img class="icon" src="/static/images/icon-howtoplay.png" /></a>
               <a href="#settings"><img class="icon" src="/static/images/icon-settings.png" /></a>
@@ -374,7 +374,7 @@
         </table>
       </div><!-- /header -->
       
-      <div id="get-ready-bear-div" class="logo">
+      <center><div id="get-ready-bear-div" class="logo">
         <div id="round-info">
             Round <span id="round">1</span> of <span id="max-round">10</span>
         </div>
@@ -387,6 +387,7 @@
         <div class="padded-button">
           <a id="go" href="#words" data-role="button" data-theme="g"> GO </a>
         </div>
+        </center>
       </div>
     </div>
 
@@ -417,12 +418,12 @@
               
              
               </div>
-               <div class="start-buttons">
+               <center><div class="start-buttons">
                  <a id="skip" data-role="button" data-icon="delete" data-theme="a"data-inline="true">Pivot</a>
                  
                  <a id="correct" data-role="button" data-icon="check" data-theme="g"data-inline="true">$$$</a>
 
-                </div>
+                </div></center>
             </div>
         </div><!-- /content -->
 
@@ -440,8 +441,6 @@
             
         </div><!-- /content -->
         
-        <a href="#finished">Done</a>
-
     </div>
 
     <div data-role="page" id="settings">
@@ -557,13 +556,23 @@
     </div>
 
     <div data-role="page" id="finish-turn">
-        <div id="finished-team"> </div>
-        <span>Pass: <span id="correct-score"></span></span>
-        <span>Fail: <span id="pass-score"></span></span>
-        <span>Total: <span id="total-score"></span></span>
-        <div class="padded-button">
-          <a href="#getready" data-role="button" data-theme="g">Continue</a>
+      
+      <div id="scorecard" >
+        <div id="points-info">
+        Points for TEAM&nbsp;<span id="finished-team"> </span>
         </div>
+        <br />
+        <span>+&nbsp;<span id="correct-score"></span></span>&nbsp;correct<br /> 
+        <span>-&nbsp;<span id="pass-score"></span></span>&nbsp;passed<br />
+        <hr />
+        <span>=&nbsp;<span id="total-score"></span></span>&nbsp;points<br />
+        
+       
+      </div>
+      <div class="padded-button">
+        <a href="#getready" data-role="button" data-theme="g">Continue</a>
+      </div>
+        
     </div>
     
     

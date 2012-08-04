@@ -171,6 +171,13 @@
     font-family: 'museo-sans';
 }
 
+#points-info {
+    text-align:center;
+    font-weight:bold;
+    font-size:24px;
+    font-family: 'museo-sans';
+}
+
 #team-info {
     text-align:center;
     font-weight:bold;
@@ -204,6 +211,20 @@
     text-align:center;
     font-size:24px;
     font-family: 'museo-sans';
+    
+}
+
+#scorecard {
+    background:white;
+    box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
+    -moz-box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
+    -webkit-box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
+    margin:20px;
+    margin-bottom:5px;
+    text-align:center;
+    font-size:24px;
+    font-family: 'museo-sans';
+    padding:20px;
     
 }
 
