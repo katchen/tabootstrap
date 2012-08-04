@@ -4,7 +4,7 @@
     <title>Tabootstrap</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
-    <script type="text/javascript" src="/static/js/play.js"></script>
+    <!--<script type="text/javascript" src="/static/js/play.js"></script>-->
     <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
 
@@ -115,7 +115,6 @@
             }
 
             function setDict(new_word,new_banned_words) {
-                alert(new_word)
                 return_dict['taboo_word'] = new_word;
                 return_dict['new_banned_words'] = new_banned_words;
 
@@ -159,15 +158,19 @@
             }
 
             function changePlayer() {
-                alert("ASD")
                 if (curr_team_name=="team1") {
+                    team1 = curr_team
+                    team1_correct = curr_team_correct
+                    team1_pass = curr_team_pass
                     curr_team = team2;
                     curr_team_correct = team2_correct;
                     curr_team_pass = team2_pass;
                     curr_team_name = "team2"
                     curr_team_id = "#team2score"
-                    alert(curr_team_id)
                 } else {
+                    team2 = curr_team
+                    team2_correct = curr_team_correct
+                    team2_pass = curr_team_pass
                     curr_team = team1;
                     curr_team_correct = team1_correct;
                     curr_team_pass = team1_pass;
@@ -219,7 +222,7 @@
         </div><!-- /header -->
         <div data-role="content">
             <a href="#words" id="timing" data-role="button">Play now</a>
-            <a href="../instructions.html" data-role="button">Instructions</a>
+            <a href="#instructions" data-role="button">Instructions</a>
         </div><!-- /content -->
 
     </div><!-- /page -->
@@ -248,6 +251,19 @@
             <a id="go"> GO </a>
             <a id="correct" style="display: none;" data-role="button">Correct!</a>
             <a id="skip" style="display: none;" data-role="button">Skip</a>
+        </div><!-- /content -->
+
+    </div>
+
+    <div data-role="page" id="instructions">
+
+        <div data-role="header">
+            <h1>Tabootstrap</h1>
+        </div><!-- /header -->
+
+        <div data-role="content">
+            <p>Taboostrap is a version of Taboo for startups played in 2 teams.</p>
+            <p>One person from each team describes the startup without using the taboo words</p>
         </div><!-- /content -->
 
     </div>
