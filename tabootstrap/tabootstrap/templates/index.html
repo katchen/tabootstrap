@@ -3,6 +3,8 @@
 {% block head %}
     <title>Tabootstrap</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes" />  
+    <link rel="apple-touch-icon-precomposed" href="/static/images/mobile-icon.png"/>
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
     <link rel="stylesheet" href="/static/css/stylesheet.css" />
     <link href='http://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>
@@ -370,8 +372,10 @@
               </div>
               <br/>
               <br/>
-              <a id="correct" data-role="button">Correct!</a>
-              <a id="skip" data-role="button">Skip</a>
+              <div data-role="controlgroup" data-type="horizontal">
+              <a id="correct" data-role="button" data-icon="check" data-theme="g">Fund!</a>
+              <a id="skip" data-role="button" data-icon="delete">Pivot</a>
+              </div>
             </div>
         </div><!-- /content -->
 
