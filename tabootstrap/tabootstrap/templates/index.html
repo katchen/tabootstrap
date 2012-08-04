@@ -294,6 +294,7 @@
               <a href="#words" id="timing" data-role="button" data-theme="g">Play now</a>
               
             </div>
+            <a href="#createword" id="createword" data-role="button" data-theme="b">Add Word</a>
             <div id="start-icons">
               <a href="#instructions"><img class="icon" src="/static/images/icon-howtoplay.png" /></a>
               <a href="#settings"><img class="icon" src="/static/images/icon-settings.png" /></a>
@@ -394,6 +395,56 @@
             <input type="submit" value="save" id="save">
         </div><!-- /content -->
 
+    </div>
+    
+    <div data-role="page" id="createword">
+            <form action="{% url create_word %}" data-ajax="false" method="POST">
+                {% csrf_token %}
+                <div data-role="fieldcontain">
+                    <label for="word">Taboo Word</label>
+                    <input name="word" id="id_word" />
+                  </div>
+                  
+                  <div data-role="fieldcontain">
+                    <label for="word">Banned Word</label>
+                    <input name="banned_word" id="id_banned_word" />
+                  </div>
+                  
+                  <div data-role="fieldcontain">
+                    <label for="word">Banned Word</label>
+                    <input name="banned_word" id="id_banned_word" />
+                  </div>
+                  
+                  <div data-role="fieldcontain">
+                    <label for="word">Banned Word</label>
+                    <input name="banned_word" id="id_banned_word" />
+                  </div>
+                  
+                  <div data-role="fieldcontain">
+                    <label for="word">Banned Word</label>
+                    <input name="banned_word" id="id_banned_word" />
+                  </div>
+                  
+                  <div data-role="fieldcontain">
+                    <label for="word">Banned Word</label>
+                    <input name="banned_word" id="id_banned_word" />
+                  </div>
+                <input type="submit" name="" value="Submit Form" data-theme="b" />
+                <input type="hidden" name="next" value="{{ next }}" />
+            </form>
+            <!--div id="shipDiv" data-role="fieldcontain">  
+              <form action="./" method="post">
+                  
+                  <div data-role="fieldcontain">
+                    <input type="submit" name="" value="Submit Form" data-theme="b" />
+                  <button class="btn btn-primary" type="submit">
+                    Submit
+                  </button>
+                </form>
+                <a data-role="button" href="{% url create_word %}">Create_Word</a>
+            <script text='jquery'>
+                $.post("/forms/requestProcessor.php", form1Var.serialize(), function(data){...}); 
+            </script-->
     </div>
 
     </body>
